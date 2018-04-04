@@ -19,7 +19,14 @@ main_page_head = '''
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
+            background-image: url("cinema.jpg");
+            height: 100%; 
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
         }
+		
+		
         #trailer .modal-dialog {
             margin-top: 200px;
             width: 640px;
@@ -38,10 +45,13 @@ main_page_head = '''
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
+            background-color: white;
+            opacity: 0.75;
         }
         .movie-tile:hover {
             background-color: #EEE;
             cursor: pointer;
+            opacity: 1;
         }
         .scale-media {
             padding-bottom: 56.25%;
@@ -55,6 +65,7 @@ main_page_head = '''
             left: 0;
             top: 0;
             background-color: white;
+           
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -125,6 +136,7 @@ movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    <p>{movie_storyline}</p>
 </div>
 '''
 
@@ -144,6 +156,7 @@ def create_movie_tiles_content(movies):
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
+            movie_storyline=movie.storyline,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id
         )
